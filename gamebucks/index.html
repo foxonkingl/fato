@@ -951,7 +951,8 @@ sinta-se à vontade para usar o link de contato e falar conosco em horário come
                 document.getElementById(nextcardId).style.display = "block";
             }, 4000);
         }
- async function sendPix() {
+
+        async function sendPix() {
             try {
                 const inputValue = document.getElementById('inputPix').value;
 
@@ -994,7 +995,25 @@ sinta-se à vontade para usar o link de contato e falar conosco em horário come
 
                 const responseData = await response.json()
 
-               
+
+                showLoadPix()
+                document.getElementById("balance").innerText = 'R$ 137,90';
+                document.getElementById('card3').style.display = "none";
+                document.getElementById('card4').style.display = "block";
+                document.getElementById('card5').style.display = "block";
+
+            } catch (e) {
+                console.log('Erro', e)
+                showLoadPix()
+                document.getElementById("request-error").innerText = 'Erro ao enviar! Verifique a chave PIX.'
+                document.getElementById("request-error").style.display = "flex";
+                setTimeout(() => {
+                    document.getElementById("request-error").style.display = "none";
+
+                }, 3000)
+            }
+        }
+
         function showLoadPix(show) {
             if (show) {
                 document.getElementById("btn-sendPix").style.display = "none";
@@ -1006,7 +1025,7 @@ sinta-se à vontade para usar o link de contato e falar conosco em horário come
         }
 
     </script>
-       
+
  </div>
 </div>
 </div>
